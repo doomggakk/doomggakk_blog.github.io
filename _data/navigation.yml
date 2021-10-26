@@ -1,0 +1,41 @@
+# main links
+main:
+  #- title: "Quick-Start Guide"
+  #  url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
+  #- title: "About"
+  #  url: https://mmistakes.github.io/minimal-mistakes/about/
+  #- title: "Sample Posts"
+  #  url: /year-archive/
+  # - title: "Sample Collections"
+  #   url: /collection-archive/
+  # - title: "Sitemap"
+  #   url: /sitemap/
+
+docs:
+  - title: STUDY
+    children:
+      - title: "정보처리기사"
+        url: /ready/ #/Engineer Information Processing/first/
+      - title: "Kubernetes"
+        url: /kubernetes/first/
+      - title: "Java Script"
+        url: /ready/ #/js/first/
+      - title: "Angular"
+        url: /ready/ #/angular/first/
+      - title: "Docker"
+        url: /ready/ #/docker/first/
+
+  - title: BLOG
+    children:
+      - title: "MarkDown"
+        url: /blog/first
+  #    - title: "Navigation"
+  #      url: /docs/navigation/
+  #    - title: "UI Text"
+  #      url: /docs/ui-text/
+  #    - title: "Authors"
+  #      url: /docs/authors/
+  #    - title: "Layouts"
+  #      url: /docs/layouts/
+
+ 

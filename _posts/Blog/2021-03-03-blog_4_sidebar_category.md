@@ -1,0 +1,105 @@
+---
+layout: single
+title: "[Blog] 3. 사이드바에 카테고리 추가"
+categories: [Blog]
+author_profile: true
+excerpt: 사이드바에 카테고리를 추가하는 기능에 대하여 정리한다.
+toc: true
+toc_sticky: true
+---
+
+## 사이드바에 카테고리 추가
+
+1._includes/sidebar.html 파일 수정
+    -> 아래의 코드를 붙여넣기한다.
+<pre>
+<code>
+{% highlight html %}
+{% raw %}
+{% if page.author_profile or layout.author_profile or page.sidebar %}
+  <div class="sidebar sticky scrollbar__hide" style="-ms-overflow-style: none;">
+  {% if page.author_profile or layout.author_profile %}{% include author-profile.html %}{% endif %}
+  {% if page.sidebar %}
+    {% for s in page.sidebar %}
+      {% if s.image %}
+        <img src=
+        {% if s.image contains "://" %}
+          "{{ s.image }}"
+        {% else %}
+          "{{ s.image | relative_url }}"
+        {% endif %}
+        alt="{% if s.image_alt %}{{ s.image_alt }}{% endif %}">
+      {% endif %}
+      {% if s.title %}<h3>{{ s.title }}</h3>{% endif %}
+      {% if s.text %}{{ s.text | markdownify }}{% endif %}
+      {% if s.nav %}{% include nav_list nav=s.nav %}{% endif %}
+    {% endfor %}
+    {% if page.sidebar.nav %}
+      {% include nav_list nav=page.sidebar.nav %}
+    {% endif %}
+  {% endif %}
+  
+  <!-- categories -->
+  {% assign categories_max = 0 %}
+  {% for category in site.categories %}
+    {% if category[1].size > categories_max %}
+      {% assign categories_max = category[1].size %}
+    {% endif %}
+  {% endfor %}
+
+  <hr>
+  <h3><a href="/categories/"><span style="font-weight: bold;">Categories</span></a></h3>
+  <ul class="taxonomy__index__sidebar">
+    {% for i in (1..categories_max) reversed %}
+      {% for category in site.categories %}
+        {% if category[1].size == i %}
+        <li>
+          <a href="{{ '/categories/#' | append: category[0] | camelcase | downcase | prepend: site.url | replace: ' ', '-' }}">
+            {{ category[0] }}&nbsp;&nbsp;<span class="taxonomy__count">{{ i }}
+          </a> 
+        </li>
+        {% endif %} 
+      {% endfor %}
+    {% endfor %}
+  </ul>
+  <!-- tages -->
+  <!-- 
+  <hr>
+  <h3><a href="/tags/">Tags</a></h3>
+    <div class="author__bio" itemprop="description">
+      {% for tag in site.tags %}
+        <a href="{{ '/tags/#' | append: tag[0] | camelcase | downcase | prepend: site.url | replace: ' ', '-' }}">
+          <span class="author__bio" itemprop="description">&nbsp;{{ tag[0] | camelcase | downcase }}&nbsp;</span> 
+        </a>
+      {% endfor %}
+    </div>
+  -->
+  </div>
+{% endif %}
+{% endraw %}
+{% endhighlight %}
+</code>
+</pre>
+
+<br>
+
+2.게시물의 머릿말에 카테고리를 추가해준다.<br>
+ex)
+
+```yaml
+---
+layout: single
+title: "[Blog] 3.사이드바에 카테고리 추가"
+categories: [Blog] # <----- 카테고리 추가
+author_profile: true
+excerpt: 사이드바에 카테고리를 추가하는 기능에 대하여 정리한다.
+toc: true
+toc_sticky: true
+---
+```
+
+<br>
+
+3.화면
+![sidebar 화면](/assets/img/blog/3_sidebar_1.png)
+
