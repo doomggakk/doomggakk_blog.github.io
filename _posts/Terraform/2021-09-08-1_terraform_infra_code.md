@@ -141,8 +141,8 @@ variable "region" {
 provider "aws" {
   region = var.region
 
-  access_key   = "AKIAQAOULBRZLR6SKPDJ"
-  secret_key   = "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"
+  access_key   = "aws_access_key 입력"
+  secret_key   = "aws_secret_key 입력"
   
 }
 
