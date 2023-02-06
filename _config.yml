@@ -96,7 +96,7 @@ analytics:
 author:
   name             : "JW"
   avatar           :  "/assets/img/blog/my_profile.png"
-  bio              : "DevOps / Developer \n더 많은 내용은 Note로 :) "
+  bio              : "DevOps / Developer <br/>더 많은 내용은 Note로 :) "
   location         : "Somewhere"
   email            :
   links:
